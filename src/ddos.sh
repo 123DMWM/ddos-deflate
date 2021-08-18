@@ -1227,7 +1227,7 @@ daemon_pid()
 daemon_running()
 {
     if [ -e /var/run/ddos.pid ]; then
-        running_pid=$(pgrep ddos)
+        running_pid=$(ps -ef | grep ddos.sh | grep -v grep | awk '{print $2}')
 
         if [ "$running_pid" != "" ]; then
             current_pid=$(daemon_pid)
